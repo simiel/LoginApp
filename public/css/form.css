@@ -51,7 +51,7 @@ input,
     color: #fff;
     padding: 15px;
     transition: .5s;
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
 }
 
 input::placeholder{
