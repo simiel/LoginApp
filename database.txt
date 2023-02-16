@@ -1,0 +1,7 @@
+Use PostgreSQL or any databse of your choice
+
+create database loginapp;
+
+\c loginapp
+
+ create table users (id serial not null primary key, name varchar(255), email varchar(255) not null unique, password varchar);
