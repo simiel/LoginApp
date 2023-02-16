@@ -8,6 +8,12 @@ form.forEach( (item, i) => {
     }, i*100)
 })
 
+window.onload = ()=>{
+    if(sessionStorage.name){
+        location.href = '/'
+    }
+}
+
 
 const name = document.querySelector('.name')
 const email = document.querySelector('.email')
@@ -28,11 +34,7 @@ if(name == null){
         )
         .then(
             data => {
-                if(data.name){
-                    alert('login successful')
-                } else{
-                    alert(data)
-                }
+                validateData(data)
             }
         )
     })
@@ -50,11 +52,29 @@ if(name == null){
             })
         }).then( res => res.json())
         .then( data => {
-            if(data.name){
-                alert('register successful')
-            } else{
-                alert(data)
-            }
+            validateData(data)
         })
     })
+}
+
+const validateData = (data)=>{
+    if(!data.name){
+        alertBox(data)
+    }else{
+        sessionStorage.name = data.name
+        sessionStorage.email = data.email
+        location.href = '/'
+    }
+}
+
+const alertBox = (data)=>{
+    const alertContainer = document.querySelector('.alert-box')
+    const alertMsg = document.querySelector('.alert')
+    alertMsg.innerHTML = data
+
+    alertContainer.style.top = '5%'
+
+    setTimeout(()=>{
+        alertContainer.style.top = null
+    }, 5000)
 }
